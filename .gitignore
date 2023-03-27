@@ -3,4 +3,4 @@
 *.mo
 *_.py
 env
-
+.gitignore
