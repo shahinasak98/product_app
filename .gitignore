@@ -1,6 +1,0 @@
-*.pyc
-*.po
-*.mo
-*_.py
-env
-.gitignore
