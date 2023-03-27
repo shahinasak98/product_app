@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Table with Database Data</title>
+	<style>
+		table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding: 5px;
+		}
+	</style>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>Item Code</th>
+			<th>Item Name</th>
+			<th>Category L1</th>
+			<th>Category L2</th>
+            <th>UPC</th>
+            <th>Parent Code</th>
+            <th>MRP price</th>
+            <th>Size</th>
+            <th>Enabled</th>
+		</tr>
+		{% for product in products %}
+		<tr>
+			<td>{{ product.item_code }}</td>
+			<td>{{ product.item_name }}</td>
+			<td>{{ product.category_l1 }}</td>
+			<td>{{ product.category_l2 }}</td>
+            <td>{{ product.upc }}</td>
+            <td>{{ product.parent_code }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.size }}</td>
+            <td>{{ product.active }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>
