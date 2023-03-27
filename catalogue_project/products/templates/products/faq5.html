@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aggregated Values of Category1 AND Category2</title>
+	<style>
+		table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding: 5px;
+		}
+	</style>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>Category L1</th>
+			<th>Category L2</th>
+			<th>Average Price</th>
+
+		</tr>
+		{% for dict in data %}
+		<tr>
+			<td>{{ dict.category_l1 }}</td>
+			<td>{{ dict.category_l2 }}</td>
+			<td>{{ dict.avg_price }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>

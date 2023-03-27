@@ -1,4 +1,5 @@
 import pandas as pd
+from django.db.models import Avg
 import os
 from django.conf import settings
 from .models import Products
@@ -10,7 +11,7 @@ def get_excel_values():
 
     print(settings.BASE_DIR)
     data = pd.read_excel(excel_file)
-    for _, row in data.iterrows():
+    for _ , row in data.iterrows():
         item_code = row['Item Code']
         item_name = row['Item Name']
         category_l1 = row['Category L1']
@@ -48,13 +49,15 @@ def get_active_value(enabled):
     
 
 def get_products():
-    """To get all the available products"""
+    """Helper function to get all the available products"""
 
     get_excel_values()
     products = Products.objects.all()
     return products
 
 def get_topmost_parent(item_code):
+    """Helper function to return topmost parent"""
+
     parent= None
     if Products.objects.filter(item_code=item_code).exists():
         parent_product = Products.objects.get(item_code=item_code)
@@ -65,6 +68,8 @@ def get_topmost_parent(item_code):
     return parent
 
 def get_children(item_code):
+    """Helper function to print children products of given product"""
+
     data = None
     if Products.objects.filter(item_code=item_code).exists():
         data = []
@@ -73,11 +78,22 @@ def get_children(item_code):
             data.append(child.item_code)
     return data
 
-def count_products():
-    data = {"active":0, "inactive" :1}
+def get_count_products():
+    """Helper function that returns count of active and inactive products"""
+
+    data = {"active": 0, "inactive" : 0}
     data["active"] = Products.objects.filter(active=True).count()
     data["inactive"] = Products.objects.filter(active=False).count()
     return data
+
+def get_avg_price():
+    """Helper function to get average of products assciated to (category1 and category)"""
+
+    datas = Products.objects.values('category_l1','category_l2').annotate(avg_price=Avg('price'))
+    return datas
+
+
+
         
 
 
