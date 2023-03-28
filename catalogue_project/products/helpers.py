@@ -56,17 +56,17 @@ def get_products():
     return products
 
 def get_topmost_parent(item_code):
-    """Helper function to return topmost parent"""
+    """Helper function to return topmost parent's name """
 
     parent= None
     if Products.objects.filter(item_code=item_code).exists():
         parent_product = Products.objects.get(item_code=item_code)
         if parent_product.parent_code == parent_product.item_code:
-            parent = parent_product.item_code
+            parent = parent_product.item_name
         else:
             while parent_product.parent_code != "nan":
                 parent_product = Products.objects.get(item_code=parent_product.parent_code)
-            parent = parent_product.item_code
+            parent = parent_product.item_name
         
     return parent
 
