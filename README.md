@@ -2,7 +2,7 @@
 
 Instructions
 
---> Added requirements.txt file inside catalogue_project for which installation of various packages are to be done using pip install -r requirements.txt
+--> Added requirements.txt file for which installation of various packages are to be done using pip install -r requirements.txt
 
 
 This project handles 5 cases with 5 different views corresponding to the urls
