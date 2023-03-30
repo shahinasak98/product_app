@@ -10,7 +10,6 @@ excel_file = os.path.join(settings.BASE_DIR, 'items.xlsx')
 def get_excel_values():
     """Helper function to add excels records to database"""
 
-    print(settings.BASE_DIR)
     data = pd.read_excel(excel_file)
     for _, row in data.iterrows():
         item_code = row['Item Code']
