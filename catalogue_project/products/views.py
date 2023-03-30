@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from .helpers import (
-    get_products, get_topmost_parent, get_children, 
+    get_products, get_topmost_parent, get_children,
     get_count_products, get_avg_price
 )
 # Create your views here.
@@ -40,7 +40,10 @@ class ProductCountView(generic.View):
 
 
 class ProductAverageView(generic.View):
-    """View for average between various types of products between category1 and category2"""
+    """
+    View for average between various types of
+    products between category1 and category2
+    """
 
     def get(self, request):
         data = get_avg_price()
