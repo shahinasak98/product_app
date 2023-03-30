@@ -12,7 +12,7 @@ def get_excel_values():
 
     print(settings.BASE_DIR)
     data = pd.read_excel(excel_file)
-    for _ , row in data.iterrows():
+    for _, row in data.iterrows():
         item_code = row['Item Code']
         item_name = row['Item Name']
         category_l1 = row['Category L1']
@@ -72,7 +72,7 @@ def get_topmost_parent(item_code):
                     item_code=parent_product.parent_code
                 )
             parent = parent_product.item_name
-       
+
     return parent
 
 
@@ -82,7 +82,9 @@ def get_children(item_code):
     data = None
     if Products.objects.filter(item_code=item_code).exists():
         data = []
-        children = Products.objects.filter(parent_code=item_code).order_by('item_code')
+        children = Products.objects.filter(
+            parent_code=item_code
+        ).order_by('item_code')
         for child in children:
             data.append(child.item_code)
     return data
@@ -98,17 +100,11 @@ def get_count_products():
 
 
 def get_avg_price():
-    """Helper function to get average of products assciated to (category1 and category)"""
+    """Helper function to get average of products assciated to
+    (category1 and category)
+    """
 
     datas = Products.objects.values(
         'category_l1', 'category_l2'
     ).annotate(avg_price=Avg('price'))
     return datas
-
-
-
-        
-
-
-
-
