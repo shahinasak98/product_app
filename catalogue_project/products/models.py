@@ -10,7 +10,7 @@ class Products(models.Model):
     category_l2 = models.CharField(max_length=255)
     upc = models.CharField(max_length=255)
     parent_code = models.CharField(max_length=255, blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2) 
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     size = models.CharField(max_length=255, blank=True)
     active = models.BooleanField(default=False)
 
